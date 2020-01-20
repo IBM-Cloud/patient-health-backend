@@ -10,7 +10,7 @@ var Cloudant = require('@cloudant/cloudant');
 var bootstrapDB = require('./scripts/bootstrapDB.js')
 
 var app = express();
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 8080);
 app.use(bodyParser.json());
 
 var url;
