@@ -11,17 +11,17 @@ var cloudant;
 module.exports = async function (connectionURL, connectionObj) {
     url = connectionURL;
     cloudant = connectionObj;
-    // try {
-    //     await importData("allergies", 11);
-    //     await importData("appointments", 1791);
-    //     await importData("observations", 7970);
-    //     await importData("organizations", 87);
-    //     await importData("patients", 10);
-    //     await importData("prescriptions", 272);
-    //     await importData("providers", 87);
-    // } catch (err) {
-    //     return(err)
-    // }
+    try {
+        await importData("allergies", 11);
+        await importData("appointments", 1791);
+        await importData("observations", 7970);
+        await importData("organizations", 87);
+        await importData("patients", 10);
+        await importData("prescriptions", 272);
+        await importData("providers", 87);
+    } catch (err) {
+        return(err)
+    }
     return("Done importing data.");
 }
 

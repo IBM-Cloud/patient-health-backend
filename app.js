@@ -17,7 +17,11 @@ var url;
 if (process.env.CLOUDANT_URL) {
     url = process.env.CLOUDANT_URL;
 } else {
-    url = JSON.parse(fs.readFileSync("./credentials.json", "utf-8")).url;
+    try {
+        url = JSON.parse(fs.readFileSync("./credentials.json", "utf-8")).url;
+    } catch {
+        throw("Cannot find Cloudant credentials, set CLOUDANT_URL.")
+    }
 }
 
 Cloudant({ url: url }, function(err, conn) {
