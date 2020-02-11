@@ -1,7 +1,8 @@
 var path = require('path'),
     fs = require('fs'),
     util = require('util'),
-    couchimport = require('couchimport');
+    couchimport = require('couchimport'),
+    retry = require('async-await-retry');
 
 const importFile =  util.promisify(couchimport.importFile)
 
@@ -12,13 +13,13 @@ module.exports = async function (connectionURL, connectionObj) {
     url = connectionURL;
     cloudant = connectionObj;
     try {
-        await importData("allergies", 11);
-        await importData("appointments", 1791);
-        await importData("observations", 7970);
-        await importData("organizations", 87);
-        await importData("patients", 10);
-        await importData("prescriptions", 272);
-        await importData("providers", 87);
+        await retry(importData, ["allergies", 11], {interval: 250});
+        await retry(importData, ["appointments", 1791], {interval: 250});
+        await retry(importData, ["observations", 7970], {interval: 250});
+        await retry(importData, ["organizations", 87], {interval: 250});
+        await retry(importData, ["patients", 10], {interval: 250});
+        await retry(importData, ["prescriptions", 272], {interval: 250});
+        await retry(importData, ["providers", 87], {interval: 250});
     } catch (err) {
         return(err)
     }

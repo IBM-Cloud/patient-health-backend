@@ -19,7 +19,7 @@ if (process.env.CLOUDANT_URL) {
 } else {
     try {
         url = JSON.parse(fs.readFileSync("./credentials.json", "utf-8")).url;
-    } catch {
+    } catch(_) {
         throw("Cannot find Cloudant credentials, set CLOUDANT_URL.")
     }
 }
@@ -39,9 +39,12 @@ Cloudant({ url: url }, function(err, conn) {
     })
 });
 
-app.get('/'), function (req, res) {
-    res.send("Node.js API running.")
-}
+app.get('/', function (_, res) {
+    // res.send("Node.js API running.")
+    cloudant.use('patients').list({include_docs: true}).then ((data) => {
+        res.send(data.rows)
+    })
+});
 
 app.post('/login/user', function(req, res){
     var username = req.body.UID;

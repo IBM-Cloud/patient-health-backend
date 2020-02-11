@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "@cloudant/cloudant": "^4.2.3",
+    "async-await-retry": "^1.0.4",
     "body-parser": "^1.19.0",
     "couchimport": "^1.4.1",
     "express": "^4.17.1"
