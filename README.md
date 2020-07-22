@@ -1,5 +1,10 @@
 # Example Health - Node.js Database Adapter for Cloudant
 
+Used in IBM Solution Tutorial: [Deploy microservices with OpenShift](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-openshift-microservices)
+
+
+For local testing:
+
 1. Set `CLOUDANT_URL` to Cloudant connection details.
 
     ```
